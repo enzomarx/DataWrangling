@@ -19,7 +19,7 @@ output_file = 'invoice.xlsx'
 pdf_file = open(input_file,'rb')
 input_pdf = PyPDF2.PdfReader(pdf_file)
 
-# Declare Headings of PDF file
+# declarar cabeçalhos do arq. PDF
 main_list = ['From',
  'To',
  'Invoice Number',
@@ -34,12 +34,9 @@ main_list = ['From',
  'Sub Total',
  '!"#$%&#']
 
-
-# New workbook in openpyxl 
 wb = Workbook()
 ws = wb.active
 
-# Write Headings into excel file
 row_num=1
 column_num=1
 for i in range(len(main_list)-1):
@@ -47,10 +44,10 @@ for i in range(len(main_list)-1):
         ws.cell(row=row_num, column=column_num, value=field)
         column_num += 1
 
-# Count total page number of PDF file
+# Count pdf
 total_pages = input_pdf.getNumPages()
 
-# Extract data from PDF and Write it into excel file
+# Extract-data
 row_num = 2
 for i in range(total_pages):
         page = input_pdf.getPage(i)
@@ -74,5 +71,4 @@ for i in range(total_pages):
 
 pdf_file.close()
 
-# Save excel file
 wb.save(output_file)
