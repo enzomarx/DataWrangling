@@ -31,7 +31,7 @@ def extract_tables_from_pdf(pdf_path):
             lines = page_text.split('\n')
             table = []
             for line in lines:
-                if re.match(r'\d{2}/\d{2}/\d{2}', line):  # Check if the line starts with a date
+                if re.match(r'\d{2}/\d{2}/\d{2}', line):  # Verificando se a linha começa com uma data
                     table.append(line)
                 elif table:  # Append the line to the last row if it's not empty
                     table[-1] += ' ' + line
