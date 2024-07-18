@@ -22,7 +22,7 @@ def extract_table_to_csv(pdf_path, output_csv_path):
         else:
             print("No tables found on the page.")
 
-# Substitua pelo caminho real do arquivo PDF e pelo caminho do arquivo CSV de saída desejado
+# Substitua pelo caminho real do pdf e pelo caminho do arquivo csv de saída desejado
 pdf_file_path = "arq.PDF"
 output_csv_path = "extracted_table_data.csv"
 
