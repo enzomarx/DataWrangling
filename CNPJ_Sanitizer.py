@@ -1,16 +1,14 @@
 import re
 
 def limpar_cnpj(cnpj):
-    #Remove caracteres que não são dígitos
+    #Remove os caracteres que não são dígitos
     cnpj = re.sub(r'\D', '', cnpj)
     return cnpj
 
-#Lista de CNPJs com pontos e traços
+#Lista --imput manual--
 cnpjs_com_pontos = ["54.300.441/0001-38";"00.999.591/0005-86";"00.999.591/0002-33";"00.999.591/0004-03";"19.325.439/0001-12";"17.747.448/0001-76";"45.624.698/0001-54";"23.444.687/0001-50";"12.581.476/0001-42";"45.661.452/0001-52";"48.282.353/0001-58";"35.807.661/0001-08";"21.605.756/0001-34";"22.679.234/0001-40";"36.419.178/0001-19";"29.967.124/0001-22";"27.068.117/0001-63";"21.018.786/0001-44";"40.869.786/0001-00";"12.056.769/0001-00";"29.625.614/0001-40";"06.352.534/0001-63";"03.882.296/0001-00";"00.411.813/0001-74";"34.703.896/0001-97";"46.224.216/0001-31";"11.230.710/0001-24";"27.688.741/0001-63";"49.851.267/0001-81"]
 
-#Limpar cada CNPJ na lista
 cnpjs_sem_pontos = [limpar_cnpj(cnpj) for cnpj in cnpjs_com_pontos]
 
-#Exibir CNPJs limpos
 for cnpj in cnpjs_sem_pontos:
     print("CNPJ sem pontos:", cnpj)
