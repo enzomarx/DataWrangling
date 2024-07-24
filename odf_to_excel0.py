@@ -34,4 +34,4 @@ excel_paths = ["12-DEZEMBRO.xlsx", "Balanco_socio_ostensivo_2022.xlsx"]
 for pdf_path, excel_path in zip(pdf_paths, excel_paths):
     text = extract_text_from_first_page(pdf_path)
     tables = extract_tables_from_text(text)
-    save_tables_to_excel(tables, excel_path) 
+    save_tables_to_excel(tables, excel_path)
