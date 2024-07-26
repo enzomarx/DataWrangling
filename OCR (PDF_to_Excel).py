@@ -43,8 +43,8 @@ def convert_pdf_to_excel(pdf_path, writer, sheet_name):
         print(f"Error processing {pdf_path}: {e}")
         pd.DataFrame().to_excel(writer, sheet_name=sheet_name)
 
-pdf_paths = ["12-DEZEMBRO (2)-10.pdf","12-DEZEMBRO (2)-11.pdf","12-DEZEMBRO (2)-12.pdf"]
-excel_path = "combined_output16.xlsx"
+pdf_paths = [r"C:\Users\PC\Desktop\RELAÇÃO SCPs DA DIRF MEDICALMAIS_rotated-4.pdf"]
+excel_path = "combined_output20.xlsx"
 
 with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
     for i, pdf_path in enumerate(pdf_paths):
