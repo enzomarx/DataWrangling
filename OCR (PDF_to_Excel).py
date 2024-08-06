@@ -2,6 +2,9 @@ import fitz
 import pytesseract
 from pdf2image import convert_from_path
 import pandas as pd
+import os
+import tkinter as tk
+from tkinter import filedialog, messagebox
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
 
@@ -43,10 +46,32 @@ def convert_pdf_to_excel(pdf_path, writer, sheet_name):
         print(f"Error processing {pdf_path}: {e}")
         pd.DataFrame().to_excel(writer, sheet_name=sheet_name)
 
-pdf_paths = ["situacao-fiscal-2024-08-01-00329696000102.pdf"]
-excel_path = "output001.xlsx"
+def process_folder():
+    folder_path = filedialog.askdirectory()
+    if not folder_path:
+        return
+    
+    pdf_paths = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith('.pdf')]
+    if not pdf_paths:
+        messagebox.showerror("Erro", "Nenhum arquivo PDF encontrado na pasta selecionada.")
+        return
+    
+    excel_path = filedialog.asksaveasfilename(defaultextension=".xlsx", filetypes=[("Excel files", "*.xlsx")])
+    if not excel_path:
+        return
+    
+    with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
+        for i, pdf_path in enumerate(pdf_paths):
+            sheet_name = f'Arquivo_{i+1}'
+            convert_pdf_to_excel(pdf_path, writer, sheet_name)
+    
+    messagebox.showinfo("Sucesso", f"Arquivos PDF convertidos e salvos em {excel_path}")
 
-with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
-    for i, pdf_path in enumerate(pdf_paths):
-        sheet_name = f'Arquivo_{i+1}'
-        convert_pdf_to_excel(pdf_path, writer, sheet_name)
+# Interface Tkinter
+root = tk.Tk()
+root.title("Conversor de PDF para Excel")
+
+btn_select_folder = tk.Button(root, text="Selecionar Pasta", command=process_folder)
+btn_select_folder.pack(pady=20)
+
+root.mainloop()
