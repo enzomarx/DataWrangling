@@ -1,7 +1,7 @@
 import pandas as pd
 
 #carregar excel file
-file_path = 'xxxxxx//xxxxx//xxxxx'
+file_path = r'C:\Users\PC\Desktop\Área de Trabalho\ByteVault\PROJETOS\DataWrangling\out\outputmaster.xlsx'
 excel_data = pd.ExcelFile(file_path)
 
 # listar todas as planilhas de um arq excel
@@ -38,7 +38,7 @@ for sheet in sheet_names:
     updated_sheets[sheet] = add_data(df, line_6, section_data)
 
 # Salvar todas as planilhas atualizadas em um novo arquivo excel
-output_path = 'xxxx/xxxxx/xxxxx'
+output_path = r'C:\Users\PC\Desktop\Área de Trabalho\ByteVault\PROJETOS\DataWrangling\out'
 with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
     for sheet_name, df in updated_sheets.items():
         df.to_excel(writer, sheet_name=sheet_name, index=False)
