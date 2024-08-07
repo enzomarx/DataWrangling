@@ -22,6 +22,11 @@ def extract_data(df):
     
     return line_6, section_data
 
+# função para adcionar dados extraídos a uma planilha
+def add_data(df, line_6, section_data):
+    df = pd.concat([df, line_6,section_data], ignore_index=True)
+    return df
+
 # dicionario para armazenar resultados
 extract_data = {}
 
