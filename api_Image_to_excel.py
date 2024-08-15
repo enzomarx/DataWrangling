@@ -2,7 +2,7 @@ import pytesseract
 from PIL import Image
 import pandas as pd
 import requests
-
+#
 # Função para extrair texto de uma imagem usando pytesseract
 def extract_text_from_image(image_path):
     image = Image.open(image_path)
